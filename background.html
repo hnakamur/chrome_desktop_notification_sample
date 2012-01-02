@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<!-- ノーティフィケーションで日本語の文字化け防止にはcharset指定が必須。 -->
+<meta charset="utf-8">
+<title>デスクトップ通知サンプル</title>
+<script src="zepto.min.js"></script>
+<script>
+function pad(v) {
+  v = '' + v;
+  return v.length == 1 ? '0' + v : v;
+}
+chrome.browserAction.onClicked.addListener(function(tab) {
+  var d = new Date();
+  var title = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()) + 'に通知';
+  var text = 'デスクトップ通知のサンプルです。ちょっと長めの文章にしてみます。'
+  var type = localStorage['notification_type'] || 'text';
+  var notification;
+  if (type === 'text') {
+    notification = window.webkitNotifications.createNotification(
+      'icon48.png',
+      title,
+      text
+    );
+  } else if (type === 'html') {
+    notification = window.webkitNotifications.createHTMLNotification('notification.html?title=' + encodeURI(title) + '&text=' + encodeURI(text));
+  }
+  notification.show();
+});
+</script>
+</head>
+<body>
+</body>
+</html>

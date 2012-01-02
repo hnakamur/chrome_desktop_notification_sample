@@ -1,0 +1,12 @@
+{
+  "name": "デスクトップ通知サンプル",
+  "version": "1",
+  "description":
+    "Chromeのデスクトップ通知のサンプルを参考に最小化しました。一方、通知ウィンドウをHTMLで指定するコードを追加しました。",
+  "icons": {"48": "icon48.png"},
+  "browser_action": {"default_icon": "icon48.png"},
+  "permissions": ["tabs", "notifications"],
+  "background_page": "background.html",
+  "options_page": "options.html",
+  "content_security_policy": "img-src 'self'"
+}

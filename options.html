@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>オプション</title>
+<script src="zepto.min.js"></script>
+</head>
+<body>
+ノーティフィケーションタイプ
+<form>
+  <div>
+    <input type="radio" name="notification_type" value="text"><label for="notification_type_text">テキスト</label>
+  </div>
+  <div>
+    <input type="radio" name="notification_type" value="html"><label for="notification_type_html">HTML</label>
+  </div>
+</form>
+<script>
+$(function() {
+  var type = localStorage['notification_type'] || 'text';
+  // This works for jQuery, but not for zepto.js
+  //  $('input[name=notification_type]').val([type]);
+  $('input[name=notification_type][value=' + type + ']')[0].checked = true;
+});
+
+$('input').click(function(ev) {
+  localStorage['notification_type'] = ev.target.value;
+});
+</script>
+</body>
+</html>
